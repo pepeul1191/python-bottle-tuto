@@ -4,8 +4,13 @@
 import bottle
 from beaker.middleware import SessionMiddleware
 from configs.session import session_options
+from configs.middlewares import logs, headers
 
 app = bottle.app()
+# install middlewares
+app.install(logs)
+# app.install(headers)
+# enable session
 app_session = SessionMiddleware(app, session_options)
 
 @app.route('/', method='GET')
@@ -25,5 +30,6 @@ if __name__ == '__main__':
         host='localhost', 
         port=3000, 
         debug=True,
-        reloader=True
+        reloader=True,
+        server='cherrypy'
     )
