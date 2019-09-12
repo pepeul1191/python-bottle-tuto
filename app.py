@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import bottle
+from bottle import request
 from beaker.middleware import SessionMiddleware
 from configs.session import session_options
 from configs.middlewares import logs, headers
@@ -14,7 +15,15 @@ app = bottle.app()
 
 @app.route('/', method='GET')
 def index():
-    return 'Hola mundo!?'
+    s = request.environ.get('beaker.session')
+    print('1 +++++++++++++++++++++++++++++++++')
+    print(s)
+    print('2 +++++++++++++++++++++++++++++++++')
+    if s['status'] == True:
+        message = 'Ud está logeado'
+    else:
+        message = 'Hola mundo!'
+    return message
 
 @app.route('/:filename#.*#')
 def send_static(filename):

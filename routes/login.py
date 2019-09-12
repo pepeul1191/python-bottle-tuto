@@ -27,6 +27,9 @@ def access():
     if user_request == 'ulima' and pass_request == 'ulima123':
         return redirect('/')
     else:
+        s = request.environ.get('beaker.session')
+        s['status'] = True
+        s.save()
         locals = {
             'message':'Usuario y/o contraseña incorrectos',
             'message_status':'color-error',
