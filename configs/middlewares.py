@@ -21,6 +21,6 @@ def headers(fn):
     @wraps(fn)
     def _headers(*args, **kwargs):
         actual_response = fn(*args, **kwargs)
-        actual_response.headers['server'] = 'Ubuntu; CherryPy\\8.9.1;'
+        # actual_response.headers['server'] = 'Ubuntu; CherryPy\\8.9.1;'
         return actual_response
-    return headers
+    return _headers

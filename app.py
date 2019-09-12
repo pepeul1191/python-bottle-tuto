@@ -5,17 +5,16 @@ import bottle
 from beaker.middleware import SessionMiddleware
 from configs.session import session_options
 from configs.middlewares import logs, headers
+from configs.bootstrap import register_routes
 
 app = bottle.app()
 # install middlewares
-app.install(logs)
+# app.install(logs)
 # app.install(headers)
-# enable session
-app_session = SessionMiddleware(app, session_options)
 
 @app.route('/', method='GET')
 def index():
-    return 'Hola mundo!'
+    return 'Hola mundo!?'
 
 @app.route('/:filename#.*#')
 def send_static(filename):
@@ -25,11 +24,16 @@ def send_static(filename):
     )
 
 if __name__ == '__main__':
+    # enable session
+    app_session = SessionMiddleware(
+        register_routes(app), 
+        session_options
+    )
     bottle.run(
         app=app_session, 
         host='localhost', 
         port=3000, 
         debug=True,
         reloader=True,
-        server='cherrypy'
+        # server='cherrypy'
     )
