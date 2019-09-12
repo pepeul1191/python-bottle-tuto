@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from bottle import Bottle, request, template, HTTPResponse, redirect
+from bottle import Bottle, template
 
 app = Bottle()
 
@@ -9,4 +9,11 @@ app = Bottle()
 # @headers
 # @session_false
 def index():
-  return 'login' # template('templates/login/index', locals = locals, helpers = helpers)
+  locals = {
+    'message':'',
+    'message_status':'',
+  }
+  return template(
+    'templates/login/index', 
+    locals=locals,
+  )
