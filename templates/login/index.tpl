@@ -35,7 +35,7 @@
     <a class="" href="/login/sign_in">
       Registrarse
     </a>
-    <a id="forgotpassword" class=" pull-right" href="/login/reset_password">
+    <a id="forgotpassword" class="float-right" href="/login/reset_password">
       Recuperar Contraseña
     </a>
   </div>
