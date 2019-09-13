@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import bottle
-from bottle import request
+from bottle import request, response
 from beaker.middleware import SessionMiddleware
 from configs.session import session_options
 from configs.bootstrap import register_routes
@@ -18,8 +18,8 @@ def index():
         else:
             message = 'Hola mundo!'
     except KeyError as e:
-        print(e)
-        message = 'Hola mundo!'
+        message = '<h1>Hola mundo!</h1>'
+    response.content_type = 'text/html; charset=utf8'
     return message
 
 @app.route('/:filename#.*#')
