@@ -48,3 +48,16 @@ def list_view():
         'templates/teachers/list', 
         locals=locals,
     )
+
+@app.route('/get/<id>', method='GET')
+@headers
+# @session_false
+def get_view(id):
+    locals = {
+        'teachers':teachers,
+        'id':id,
+    }
+    return template(
+        'templates/teachers/detail', 
+        locals=locals,
+    )
