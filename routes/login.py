@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from bottle import Bottle, template, request, redirect
+from bottle import Bottle, template, request, redirect, response
+from configs.middlewares import headers
 
 app = Bottle()
 
 @app.route('/', method='GET')
-# @headers
+@headers
 # @session_false
 def index():
+    # response.headers['hola']='application'
     locals = {
         'message':'',
         'message_status':'',

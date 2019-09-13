@@ -5,23 +5,20 @@ import bottle
 from bottle import request
 from beaker.middleware import SessionMiddleware
 from configs.session import session_options
-from configs.middlewares import logs, headers
 from configs.bootstrap import register_routes
 
 app = bottle.app()
-# install middlewares
-# app.install(logs)
-# app.install(headers)
 
 @app.route('/', method='GET')
 def index():
     s = request.environ.get('beaker.session')
-    print('1 +++++++++++++++++++++++++++++++++')
-    print(s)
-    print('2 +++++++++++++++++++++++++++++++++')
-    if s['status'] == True:
-        message = 'Ud está logeado'
-    else:
+    try:
+        if s['status'] == True:
+            message = 'Ud está logeado'
+        else:
+            message = 'Hola mundo!'
+    except KeyError as e:
+        print(e)
         message = 'Hola mundo!'
     return message
 
@@ -44,5 +41,5 @@ if __name__ == '__main__':
         port=3000, 
         debug=True,
         reloader=True,
-        # server='cherrypy'
+        server='cherrypy'
     )
