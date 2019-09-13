@@ -24,3 +24,4 @@ Fuentes:
 + https://programwithus.com/learn-to-code/Pip-and-virtualenv-on-Windows/
 + https://github.com/pepeul1191/python-bottle-cherry-boilerplate
 + https://github.com/pepeul1191/python-accesos-v2
++ https://bottlepy.org/docs/dev/stpl.html

@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import json
-from bottle import Bottle, HTTPResponse, request
+from bottle import Bottle, HTTPResponse, request, template
 from configs.middlewares import headers
 from helpers.teacher_list import teachers
 
 app = Bottle()
 
-@app.route('/list', method='GET')
+@app.route('/api/list', method='GET')
 @headers
 # @session_false
 def list():
@@ -17,7 +17,7 @@ def list():
       body=json.dumps(teachers)
     )
 
-@app.route('/get/<id>', method='GET')
+@app.route('/api/get/<id>', method='GET')
 @headers
 # @session_false
 def get(id):
@@ -27,7 +27,7 @@ def get(id):
       body=json.dumps(teachers[id])
     )
 
-@app.route('/search', method='GET')
+@app.route('/api/search', method='GET')
 @headers
 # @session_false
 def search():
@@ -35,4 +35,16 @@ def search():
     return HTTPResponse(
       status=200, 
       body=json.dumps(teachers[id])
+    )
+
+@app.route('/list', method='GET')
+@headers
+# @session_false
+def list_view():
+    locals = {
+        'teachers':teachers,
+    }
+    return template(
+        'templates/teachers/list', 
+        locals=locals,
     )
