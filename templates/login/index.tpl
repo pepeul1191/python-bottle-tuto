@@ -9,7 +9,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-    <form class="form-signin" action="/login" method="post">
+  <form class="form-signin" action="/login" method="post">
   <!--
   <a href="/">
     <img src="<%= constants.static_url %>assets/img/logo.png" height="130" width="240" class="mb-4 brand" alt="Logo-Login">
